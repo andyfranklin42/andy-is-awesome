@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact - Andy Is Awesome</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --lime: #d2ec09;
+    --magenta: #c301c6;
+    --cyan: #02bdca;
+    --purple: #420481;
+    --green: #058034;
+    --white: #ffffff;
+    --black: #0a0a0a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    background-color: var(--lime);
+    color: var(--purple);
+    overflow-x: hidden;
+  }
+
+  /* ===================== NAV ===================== */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--purple);
+    border-bottom: 4px solid var(--magenta);
+  }
+
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+
+  .brand {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--lime);
+    text-decoration: none;
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+  }
+
+  .brand span {
+    color: var(--cyan);
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+  }
+
+  nav ul li a {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+    color: var(--white);
+    padding: 0.45rem 0.85rem;
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background 0.2s, color 0.2s;
+    display: block;
+  }
+
+  nav ul li a:hover {
+    background: var(--magenta);
+    color: var(--white);
+  }
+
+  nav ul li a.active {
+    background: var(--lime);
+    color: var(--purple);
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 26px;
+    height: 3px;
+    background: var(--lime);
+    border-radius: 2px;
+  }
+
+  /* ===================== HERO STRIP ===================== */
+  .hero-strip {
+    background: var(--magenta);
+    padding: 5rem 1.5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-strip::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -80px;
+    width: 320px;
+    height: 320px;
+    background: var(--cyan);
+    border-radius: 50%;
+    opacity: 0.25;
+  }
+
+  .hero-strip::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    left: 10%;
+    width: 180px;
+    height: 180px;
+    background: var(--lime);
+    border-radius: 50%;
+    opacity: 0.3;
+  }
+
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .page-label {
+    display: inline-block;
+    background: var(--lime);
+    color: var(--purple);
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.35rem 1rem;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+    transform: rotate(-1.5deg);
+    display: inline-block;
+  }
+
+  .hero-strip h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    max-width: 700px;
+  }
+
+  .hero-strip h1 em {
+    font-style: normal;
+    color: var(--lime);
+  }
+
+  .hero-subtitle {
+    margin-top: 1.5rem;
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.88);
+    max-width: 480px;
+    line-height: 1.6;
+  }
+
+  .what-would-andy {
+    margin-top: 2rem;
+    display: inline-block;
+    background: var(--purple);
+    color: var(--lime);
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 0.95rem;
+    padding: 0.7rem 1.5rem;
+    border-radius: 4px;
+    letter-spacing: 0.01em;
+    transform: rotate(0.8deg);
+  }
+
+  /* ===================== MAIN GRID ===================== */
+  .contact-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  /* ===================== FORM BLOCK ===================== */
+  .form-block {
+    background: var(--purple);
+    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .form-block::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 120px;
+    height: 120px;
+    background: var(--magenta);
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+
+  .form-block h2 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 2rem;
+    color: var(--lime);
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .form-block p {
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    position: relative;
+    z-index: 1;
+    line-height: 1.6;
+  }
+
+  .form-group {
+    margin-bottom: 1.25rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .form-group label {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 0.5rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.1);
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    color: var(--white);
+    transition: border-color 0.2s, background 0.2s;
+    outline: none;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: rgba(255,255,255,0.35);
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--lime);
+    background: rgba(255,255,255,0.15);
+  }
+
+  .form-group textarea {
+    height: 140px;
+    resize: vertical;
+  }
+
+  .form-note {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-send {
+    display: inline-block;
+    background: var(--lime);
+    color: var(--purple);
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-send:hover {
+    background: var(--cyan);
+    color: var(--purple);
+    transform: scale(1.04) rotate(-1deg);
+  }
+
+  /* ===================== INFO BLOCK ===================== */
+  .info-block {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .info-card {
+    border-radius: 14px;
+    padding: 2rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .info-card.cyan-card {
+    background: var(--cyan);
+    color: var(--purple);
+  }
+
+  .info-card.green-card {
+    background: var(--green);
+    color: var(--white);
+  }
+
+  .info-card.map-card {
+    background: var(--purple);
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .info-card h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .cyan-card h3 { color: var(--purple); }
+  .green-card h3 { color: var(--lime); }
+
+  .contact-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .contact-detail:last-child { margin-bottom: 0; }
+
+  .cd-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--purple);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.85rem;
+  }
+
+  .cyan-card .cd-icon { background: var(--purple); }
+  .green-card .cd-icon { background: rgba(255,255,255,0.2); }
+
+  .cd-text strong {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 0.2rem;
+  }
+
+  .cd-text span {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .cyan-card .cd-text strong { color: var(--purple); }
+  .cyan-card .cd-text span { color: var(--purple); }
+  .green-card .cd-text strong { color: rgba(255,255,255,0.7); }
+  .green-card .cd-text span { color: var(--white); }
+
+  /* Map placeholder */
+  .map-placeholder {
+    width: 100%;
+    height: 220px;
+    background: linear-gradient(135deg, #1a0340 0%, var(--purple) 40%, var(--magenta) 100%);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .map-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.04) 0, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 40px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.04) 0, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 40px);
+  }
+
+  .map-pin {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  .map-pin-dot {
+    width: 20px;
+    height: 20px;
+    background: var(--lime);
+    border-radius: 50%;
+    margin: 0 auto 0.5rem;
+    box-shadow: 0 0 0 6px rgba(210,236,9,0.3), 0 0 0 12px rgba(210,236,9,0.1);
+  }
+
+  .map-pin span {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 0.85rem;
+    color: var(--lime);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .map-label {
+    background: var(--lime);
+    color: var(--purple);
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.25rem;
+    text-align: center;
+  }
+
+  /* ===================== HOURS TABLE ===================== */
+  .hours-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+  }
+
+  .hours-table tr td {
+    padding: 0.35rem 0;
+    font-size: 0.9rem;
+    color: var(--white);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .hours-table tr:last-child td { border-bottom: none; }
+
+  .hours-table td:first-child {
+    font-weight: 700;
+    width: 55%;
+  }
+
+  .hours-table td:last-child {
+    color: var(--lime);
+    font-weight: 700;
+  }
+
+  /* ===================== WACKY STRIP ===================== */
+  .wacky-strip {
+    background: var(--black);
+    padding: 2rem 1.5rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .wacky-strip-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .wacky-pill {
+    background: var(--magenta);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0.5rem 1.25rem;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .wacky-pill.lime { background: var(--lime); color: var(--purple); }
+  .wacky-pill.cyan { background: var(--cyan); color: var(--purple); }
+  .wacky-pill.green { background: var(--green); color: var(--white); }
+
+  .wacky-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: var(--white);
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .wacky-text em {
+    font-style: normal;
+    color: var(--lime);
+  }
+
+  /* ===================== FOOTER ===================== */
+  footer {
+    background: var(--purple);
+    border-top: 4px solid var(--cyan);
+    padding: 3rem 1.5rem 2rem;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    margin-bottom: 2.5rem;
+    align-items: start;
+  }
+
+  .footer-brand .brand-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 1.75rem;
+    color: var(--lime);
+    letter-spacing: -0.03em;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-brand .tagline {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .footer-nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+    justify-content: flex-end;
+  }
+
+  .footer-nav ul li a {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+    color: rgba(255,255,255,0.75);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.3rem 0;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .footer-nav ul li a:hover {
+    color: var(--lime);
+    border-bottom-color: var(--lime);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .footer-bottom p {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.45);
+  }
+
+  .footer-bottom .footer-badge {
+    background: var(--magenta);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+  }
+
+  /* ===================== RESPONSIVE ===================== */
+  @media (max-width: 900px) {
+    .contact-main {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-top {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .footer-nav ul {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .nav-inner {
+      flex-wrap: wrap;
+      height: auto;
+      padding: 1rem 1.5rem;
+    }
+
+    .nav-toggle {
+      display: flex;
+    }
+
+    nav {
+      width: 100%;
+      display: none;
+    }
+
+    nav.open {
+      display: block;
+    }
+
+    nav ul {
+      flex-direction: column;
+      gap: 0;
+      padding: 0.5rem 0 1rem;
+    }
+
+    nav ul li a {
+      border-radius: 6px;
+      padding: 0.65rem 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .form-block {
+      padding: 2rem 1.5rem;
+    }
+
+    .wacky-strip-inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header>
+  <div class="nav-inner">
+    <a href="index.html" class="brand">Andy Is <span>Awesome</span></a>
+    <div class="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="awesome-list.html">Awesome List</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== HERO STRIP ===================== -->
+<section class="hero-strip">
+  <div class="hero-inner">
+    <div class="page-label">Get in Touch</div>
+    <h1>Talk to<br><em>Andy.</em><br>Change Everything.</h1>
+    <p class="hero-subtitle">Whether you want to end poverty, reverse climate change, or just say hello to the most emotionally available human on the planet - Andy is here. Probably smelling incredible.</p>
+    <div class="what-would-andy">If in doubt, just ask: "What would Andy do?!"</div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT MAIN ===================== -->
+<main class="contact-main">
+
+  <!-- FORM -->
+  <div class="form-block">
+    <h2>Send Andy a Message</h2>
+    <p>He reads every single one. Between solving global crises, achieving deeper spiritual enlightenment, and being a brilliant dad - he always finds time.</p>
+
+    <form action="#" method="post" novalidate>
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="What do people call you?">
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="We promise Andy won't spam you">
+      </div>
+      <div class="form-group">
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" placeholder="Tell Andy what's on your mind. He's listening, genuinely."></textarea>
+      </div>
+      <p class="form-note">This form does not submit anywhere. Andy already knows what you were going to say. He's just that good.</p>
+      <button type="submit" class="btn-send">Send It to Andy</button>
+    </form>
+  </div>
+
+  <!-- INFO -->
+  <div class="info-block">
+
+    <!-- Contact Details -->
+    <div class="info-card cyan-card">
+      <h3>Find Andy</h3>
+
+      <div class="contact-detail">
+        <div class="cd-icon" style="color:#d2ec09; font-size:1rem;">&#9679;</div>
+        <div class="cd-text">
+          <strong>Location</strong>
+          <span>Everywhere, simultaneously. He's very efficient.</span>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="cd-icon" style="color:#d2ec09; font-size:0.9rem;">@</div>
+        <div class="cd-text">
+          <strong>Email</strong>
+          <span>andy@andyisawesome.world</span>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="cd-icon" style="color:#d2ec09; font-size:0.85rem;">#</div>
+        <div class="cd-text">
+          <strong>Phone</strong>
+          <span>+44 800 ANDY AWE (he answers on the first ring)</span>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div class="cd-icon" style="color:#d2ec09; font-size:0.8rem;">!</div>
+        <div class="cd-text">
+          <strong>Motto</strong>
+          <span>Where there's a will, there's an Andy.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Opening Hours -->
+    <div class="info-card green-card">
+      <h3>Andy's Availability</h3>
+      <table class="hours-table">
+        <tr>
+          <td>Monday - Friday</td>
+          <td>24 hours (of course)</td>
+        </tr>
+        <tr>
+          <td>Saturday</td>
+          <td>All day, saving things</td>
+        </tr>
+        <tr>
+          <td>Sunday</td>
+          <td>Spiritual excellence hours</td>
+        </tr>
+        <tr>
+          <td>Public Holidays</td>
+          <td>Extra awesome mode on</td>
+        </tr>
+        <tr>
+          <td>Your crisis at 3am</td>
+          <td>Absolutely, call him</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Map Placeholder -->
+    <div class="info-card map-card">
+      <div class="map-placeholder">
+        <div class="map-pin">
+          <div class="map-pin-dot"></div>
+          <span>Somewhere Brilliant</span>
+        </div>
+      </div>
+      <div class="map-label">Andy operates globally. No postcode required.</div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ===================== WACKY STRIP ===================== -->
+<section class="wacky-strip">
+  <div class="wacky-strip-inner">
+    <div class="wacky-text">How can the world understand the <em>aspirations of an Andy?</em></div>
+    <div class="wacky-pill lime">Emotionally Available</div>
+    <div class="wacky-pill">World Hunger: Solved</div>
+    <div class="wacky-pill cyan">Smells Great</div>
+    <div class="wacky-pill green">Lives to 300</div>
+    <div class="wacky-pill">Spiritually Enlightened</div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="brand-name">Andy Is Awesome</span>
+        <p class="tagline">Where there's a will, there's an Andy. Solving the world's problems one act of brilliance at a time.</p>
+      </div>
+      <div class="footer-nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="awesome-list.html">Awesome List</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Andy Is Awesome. All rights reserved. All problems being handled.</p>
+      <div class="footer-badge">Est. Somewhere Brilliant</div>
+    </div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>
