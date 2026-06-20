@@ -1,30 +1,21 @@
 {
   "name": "Andy Is Awesome",
-  "business_type": "other",
+  "business_type": "business",
   "pages": [
     "index",
     "about",
-    "services",
+    "awesome-list",
     "contact",
-    "awesome-list"
+    "services"
   ],
   "style": {
-    "type": "other",
-    "visualDirection": "creative",
+    "type": "business",
+    "visualDirection": "minimal",
     "fontStyle": "modern",
-    "colourMood": "custom",
-    "heroStyle": "typo",
+    "colourMood": "cool",
+    "heroStyle": "split",
     "structure": "multi",
-    "density": "balanced",
-    "customColors": [
-      "#d2ec09",
-      "#c301c6",
-      "#02bdca",
-      "#420481",
-      "#058034"
-    ],
-    "vibe": "playful and wacky",
-    "copyNotes": "If in doubt, just ask \"What would Andy do?!\"\nWhere there's a will, there's an Andy\nHow can the world understand the aspirations of an Andy?"
+    "density": "balanced"
   },
-  "created_at": "2026-06-18T16:46:21.385Z"
+  "created_at": "2026-06-20T21:32:43.256Z"
 }
