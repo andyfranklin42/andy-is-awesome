@@ -4,10 +4,12 @@
   "pages": [
     "index",
     "about",
+    "animal-chat",
     "awesome-list",
+    "blog",
+    "blog-untitled-post",
     "contact",
-    "services",
-    "animal-chats"
+    "services"
   ],
   "style": {
     "type": "business",
@@ -18,5 +20,5 @@
     "structure": "multi",
     "density": "balanced"
   },
-  "created_at": "2026-06-20T21:32:43.256Z"
+  "created_at": "2026-06-25T21:33:07.342Z"
 }
